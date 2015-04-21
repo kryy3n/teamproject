@@ -1,0 +1,35 @@
+<html>
+  <head>
+    <title>Test Application</title>
+    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <script src="./node_modules/angular/angular.min.js"></script>
+    <script src="./node_modules/angular-youtube-embed.js"></script>
+    <script src="app.js"></script>
+    
+    <style> .glyphicon-thumbs-up { cursor:pointer } </style>
+  </head>
+  <body ng-app="TestApplication" ng-controller="MainCtrl">
+    <center><h1 class="page-header">Kek Application</h1>
+    <div ng-repeat="post in posts | orderBy: '-upvotes'">
+      <span class = "glyphicon glyphicon-thumbs-up" ng-click="incrementUpvotes(post)"></span>
+        <youtube-video ng-show = "post.link" video-url="post.link"></youtube-video>
+      <span ng-hide="post.link">
+        {{post.title}}
+      </span>
+      <span style ="font-size:20px; margin-left:10px;">{{post.title}}</span>
+    </div>
+    <form ng-submit="addPost()" style="margin-top:30px; margin-left:100px;margin-right:100px;">
+      <div class="form-group">
+        <input type="text" class="form-control" placeholder="Title" ng-model="title"></input>
+      </div>
+      <div>
+        <input type="text" class="form-control" placeholder="Link" ng-model="link"></input>
+      </div>
+      <div>
+        <button type="submit" class="btn btn-primary" style="margin-top:10px; width:20%">Post</button>
+      </div>
+     </form>
+  </center>
+  </body>
+</html>
